@@ -18,7 +18,7 @@ server/certs/
 *.key
 *.crt
 *.p12
-vibeo-32894u23.json
+vibeo-485708-ea6db0cfb272.json
 
 # Build output
 dist/
