@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Google service account keys
+*.json
+service-account.json
+google-credentials.json
+config/
+
+# HTTPS certificates
+*.pem
+*.key
+*.crt
+*.pfx
+certs/
+
+# Logs
+*.log
+
+# Build folders
+dist/
+build/

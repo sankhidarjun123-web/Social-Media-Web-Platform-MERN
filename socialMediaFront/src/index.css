@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+
+
+@layer base {
+    :root {
+        /*basic app design coice*/
+        --primary-bg: #f3f4f6;
+
+    }
+}
+
+
+@layer components {
+
+    /*Primary design choice for the app buttons*/
+    .btn-gradient {
+        @apply bg-cyan-500 text-white font-bold bg-gradient-to-r from-cyan-400 via-sky-500 to-violet-500 hover:cursor-pointer
+    }
+
+    .inner-btn-gradient {
+        @apply bg-gradient-to-r from-cyan-500 via-sky-600 to-violet-600
+    }
+
+    .text-btn-gradient {
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-500 to-violet-500 font-bold
+    }
+
+
+    /*properties of a basic button on hover in the app*/
+
+    .hover-btn-prop {
+        @apply rounded-full hover:bg-slate-300/30 cursor-pointer w-10 h-10 p-1
+    }
+
+    .comp-gradient {
+        @apply bg-gradient-to-r from-cyan-400 via-sky-500 to-violet-500
+    }
+
+    .comp-gradient-dark {
+        @apply bg-gradient-to-r from-cyan-600 via-sky-700 to-violet-700;
+    }
+
+    /*component box property*/
+
+    .comp-bac {
+        @apply relative overflow-hidden bg-[#0f172a];
+    }
+
+    .comp-bac::before,
+    .comp-bac::after {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 9999px;
+        filter: blur(120px);
+        opacity: 0.35;
+        z-index: 0;
+        animation: floatBlob 12s ease-in-out infinite;
+    }
+
+    /* Top-left light */
+    .comp-bac::before {
+        background: #6366f1;
+        /* indigo */
+        top: -200px;
+        left: -200px;
+    }
+
+    /* Bottom-right light */
+    .comp-bac::after {
+        background: #a855f7;
+        /* purple */
+        bottom: -200px;
+        right: -200px;
+        animation-delay: 4s;
+    }
+
+    /*Component styling apart*/
+    .comp-box {
+        @apply flex flex-col gap-2 p-5 bg-white rounded-lg shadow-lg;
+    }
+
+    .comp-header {
+        @apply relative flex items-center
+    }
+
+    .comp-main {
+        @apply overflow-y-auto p-5 flex flex-col
+    }
+
+    .not-allowed-button {
+        @apply bg-gray-300 text-gray-500 cursor-not-allowed
+    }
+
+    /*component box properties*/
+
+    .app {
+        @apply w-full sm:w-[55%] ml-0 sm:ml-[20%] bg-[var(--primary-bg)] gap-3 flex flex-col items-center
+    }
+
+    .network {
+        @apply w-full sm:ml-[5%] sm:w-[calc(95%-25%)] bg-[var(--primary-bg)] flex overflow-x-hidden
+    }
+
+    .chats {
+        @apply w-full sm:ml-[5%] sm:w-[calc(100%-5%)] bg-[var(--primary-bg)] flex overflow-hidden h-screen min-h-0;
+    }
+
+    .channel {
+        @apply w-full bg-[var(--primary-bg)] sm:ml-[5%] sm:w-[calc(95%-25%)] min-h-screen flex flex-col items-baseline-last relative
+    }
+
+    .search {
+        @apply bg-[var(--primary-bg)] sm:ml-[5%] sm:w-[calc(95%-25%)] min-h-screen flex flex-col items-baseline-last relative
+    }
+
+    /*Styling at the auth route*/
+
+    .auth-box {
+        @apply rounded-lg flex flex-col gap-4 pt-4 pb-4 shadow-2xl shadow-black/10 bg-white/70 backdrop-blur-xl;
+    }
+
+    .inp-cl {
+        @apply h-10 border-2 border-black rounded font-bold outline-0 px-2;
+    }
+}
+
+
+.explore-grid {
+
+    display: grid;
+    gap: 2px;
+    grid-template-areas:
+        "img1 img2 img3 img4 img5"
+        "vid1 vid1 img6 img7 img8"
+        "img9 img10 img11 img12 img13"
+        "img14 img15 img16 vid2 vid2";
+}
+
+
+.clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    50% {
+        transform: translate(50px, -60px) scale(1.1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
