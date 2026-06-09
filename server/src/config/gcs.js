@@ -1,10 +1,12 @@
 const { Storage } = require("@google-cloud/storage");
 const path = require('path');
 
+const credentials = JSON.parse(
+  process.env.GOOGLE_SERVICE_ACCOUNT_JSON
+);
+
 const storage = new Storage({
-  keyFilename: path.join(process.cwd(),
-    "config",
-    "vibeo-485708-ea6db0cfb272.json"),
+  credentials,
   projectId: process.env.GCS_PROJECT_ID
 });
 
