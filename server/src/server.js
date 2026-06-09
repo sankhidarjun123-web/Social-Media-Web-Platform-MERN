@@ -32,7 +32,7 @@ const {
 const registerSocket = require("./socket/index");
 
 const app = express();
-const PORT = 2000;
+const PORT = process.env.PORT || 2000;
 
 let server;
 
@@ -59,7 +59,7 @@ app.use(
 );
 
 app.use(cors({
-  origin: ["https://localhost:5174", "https://localhost:5173"], // EXACT frontend origin
+  origin: [process.env.CLIENT_URL, "https://localhost:5174", "https://localhost:5173"], // EXACT frontend origin
   credentials: true
 }));
 
