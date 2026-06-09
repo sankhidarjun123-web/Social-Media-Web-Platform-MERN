@@ -17,7 +17,7 @@ const sendVerificationEmail = async (
 ) => {
 
     const html = await ejs.renderFile(
-        path.join(__dirname, "../views/verification.ejs"),
+        path.join(process.cwd(), "views", "verification.ejs"),
         {
             verificationLink,
             expiryTime: "24 hours"
