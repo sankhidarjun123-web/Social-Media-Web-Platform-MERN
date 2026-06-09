@@ -34,10 +34,16 @@ const registerSocket = require("./socket/index");
 const app = express();
 const PORT = 2000;
 
-const server = https.createServer({
-  key: fs.readFileSync(path.join(__dirname, '..', 'cert', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, '..', 'cert', 'cert.pem'))
-}, app);
+let server;
+
+if (process.env.NODE_ENV === "production") {
+  server = require("http").createServer(app);
+} else {
+  server = https.createServer({
+    key: fs.readFileSync(path.join(__dirname, "..", "cert", "key.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "..", "cert", "cert.pem"))
+  }, app);
+}
 
 connectDB();
 
