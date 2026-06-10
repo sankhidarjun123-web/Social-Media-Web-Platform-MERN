@@ -149,13 +149,12 @@ const PostFooter = ({ post, openComments, setOpenComments }) => {
             <img
               src={share}
               alt="share"
-              className="w-5 h-5 sm:w-6 sm:h-6"
+              className="w-full h-full"
             />
-
-            <span className="text-[11px] sm:text-xs font-medium text-zinc-700 ml-1">
-              {post?.shares || 0}
-            </span>
           </button>
+          <span className="text-[11px] sm:text-xs font-medium text-zinc-700 ml-1">
+            {post?.shares || 0}
+          </span>
         </div>
 
       </div>
