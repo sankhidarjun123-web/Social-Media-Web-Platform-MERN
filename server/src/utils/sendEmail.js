@@ -14,6 +14,8 @@ const sendVerificationEmail = async (
     verificationLink
 ) => {
 
+    console.log("BREVO_API_KEY exists:", !!process.env.BREVO_API_KEY);
+    console.log("BREVO_API_KEY:", process.env.BREVO_API_KEY?.slice(0, 10));
     const html = await ejs.renderFile(
         path.join(process.cwd(), "views", "verification.ejs"),
         {
