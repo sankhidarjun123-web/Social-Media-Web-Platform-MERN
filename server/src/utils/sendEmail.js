@@ -1,10 +1,17 @@
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 const path = require("path");
 
 
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+    port: 465,
+    host: "smtp.gmail.com",
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_APP_PASSWORD
+    },
+    secure: true
+});
 
 const sendVerificationEmail = async (
     email,
@@ -19,11 +26,22 @@ const sendVerificationEmail = async (
         }
     );
 
-    await resend.emails.send({
-        from: "onboarding@resend.dev",
+    const mailData = {
+        from: process.env.EMAIL,
         to: email,
         subject: "Verify Your Email",
         html
+    }
+
+    await new Promise((resolve, reject) => {
+        transporter.sendMail(mailData, (err, info) => {
+            if(err) {
+                console.error(err);
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
     });
 
 };
