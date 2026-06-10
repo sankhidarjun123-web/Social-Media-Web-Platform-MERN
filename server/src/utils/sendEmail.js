@@ -1,37 +1,15 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const ejs = require("ejs");
 const path = require("path");
 
-const dns = require("dns");
-dns.setDefaultResultOrder("ipv4first");
 
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_APP_PASSWORD
-    }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendVerificationEmail = async (
     email,
     verificationLink
 ) => {
-
-    console.log("EMAIL:", process.env.EMAIL);
-    console.log("APP_PASSWORD exists:", !!process.env.APP_PASSWORD);
-    dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-
-        console.log("SMTP addresses:");
-        console.log(addresses);
-    });
 
     const html = await ejs.renderFile(
         path.join(process.cwd(), "views", "verification.ejs"),
@@ -41,8 +19,8 @@ const sendVerificationEmail = async (
         }
     );
 
-    await transporter.sendMail({
-        from: process.env.EMAIL,
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
         to: email,
         subject: "Verify Your Email",
         html
