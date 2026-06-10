@@ -51,15 +51,17 @@ const likePost = async (req, res) => {
 
         const userData = await Users.findById(user).select("username").lean();
 
-        await sendNotification({
-            receiver: [post?.postedBy.toString()],
-            sender: user,
-            type: "like",
-            link: "/post",
-            image: userData?.profileImg,
-            mainMessage:
-                `${userData?.username} liked your post`
-        });
+        if (post?.postedBy.toString() !== user) {
+            await sendNotification({
+                receiver: [post?.postedBy.toString()],
+                sender: user,
+                type: "like",
+                link: "/post",
+                image: userData?.profileImg,
+                mainMessage:
+                    `${userData?.username} liked your post`
+            });
+        }
 
         res.status(201).json({ message: "Like created" });
 
@@ -167,15 +169,17 @@ const likeComment = async (req, res) => {
 
         const userData = await Users.findById(user).select("username").lean();
 
-        await sendNotification({
-            receiver: [comment?.postedBy.toString()],
-            sender: user,
-            type: "like",
-            link: "/post",
-            image: userData?.profileImg,
-            mainMessage:
-                `${userData?.username} liked your comment`
-        });
+        if (comment?.postedBy.toString() !== user) {
+            await sendNotification({
+                receiver: [comment?.postedBy.toString()],
+                sender: user,
+                type: "like",
+                link: "/post",
+                image: userData?.profileImg,
+                mainMessage:
+                    `${userData?.username} liked your comment`
+            });
+        }
 
         res.status(201).json({ message: "Like created" });
 
