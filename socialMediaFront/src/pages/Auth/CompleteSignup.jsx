@@ -69,22 +69,22 @@ const CompleteSignup = () => {
         return -(pg - 1) * (100 / 3); 
     };
 
-    // REDESIGNED: Sleek, uniform input classes with improved hover, focus and placeholder states
-    const inputClass = "relative z-[999] w-full h-12 bg-slate-50/60 border border-slate-200 rounded-xl px-4 text-slate-800 font-medium placeholder:text-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200 outline-none shadow-inner shadow-sm";
+    // Sleek, uniform input classes
+    const inputClass = "w-full h-12 bg-slate-50/60 border border-slate-200 rounded-xl px-4 text-slate-800 font-medium placeholder:text-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200 outline-none shadow-inner shadow-sm";
 
     return (
-        <div className="w-full min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div className="relative z-[999] w-full min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
             <div 
                 style={{ scrollbarWidth: "none" }}
-                className="w-full max-w-xl bg-white rounded-3xl overflow-hidden relative border border-slate-100 shadow-2xl shadow-slate-200/80 flex flex-col h-[85vh] max-h-[780px]"
+                className="w-full sm:max-w-xl bg-white sm:rounded-3xl overflow-hidden relative border-0 sm:border border-slate-100 shadow-none sm:shadow-2xl sm:shadow-slate-200/80 flex flex-col h-screen sm:h-[85vh] sm:max-h-[780px]"
             >
                 {/* Header Navbar with fixed Progress Bar */}
-                <div className="w-full bg-white border-b border-slate-100 px-6 sm:px-10 py-5 z-30 flex flex-col gap-4 shrink-0">
+                <div className="w-full bg-white border-b border-slate-100 px-4 sm:px-10 py-4 sm:py-5 z-30 flex flex-col gap-3 sm:gap-4 shrink-0">
                     <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">
                             Step {pg} of 3
                         </span>
-                        <span className="text-sm font-semibold text-slate-400">
+                        <span className="text-xs sm:text-sm font-semibold text-slate-400">
                             {pg === 1 && "Account Info"}
                             {pg === 2 && "Identity"}
                             {pg === 3 && "Preferences"}
@@ -106,22 +106,23 @@ const CompleteSignup = () => {
                     onSubmit={handleSubmit}
                     style={{ 
                         transform: `translateX(${getTranslateX()}%)`,
-                        width: '300%' // Three steps, each 100% of container width
+                        width: '300%' 
                     }}
-                    className="flex flex-row flex-grow h-full overflow-hidden transition-transform duration-500 ease-out"
+                    className="relative z-20 flex flex-row flex-1 min-h-0 overflow-hidden transition-transform duration-500 ease-out"
                 >
                     {/* STEP 1: General Info */}
                     <div 
                         ref={containerRef} 
                         style={{ scrollbarWidth: "none" }} 
-                        className="w-1/3 flex-shrink-0 flex flex-col p-6 sm:p-10 h-full overflow-y-auto"
+                        className="w-1/3 flex-shrink-0 flex flex-col justify-between p-4 sm:p-10 h-full min-h-0"
                     >
-                        <header className="mb-6">
-                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Create your profile</h1>
-                            <p className="text-slate-500 text-sm mt-1.5">Tell us a bit about who you are to get started.</p>
-                        </header>
+                        {/* Scrollable Body Content Wrapper */}
+                        <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4 pr-1 pb-4" style={{ scrollbarWidth: "none" }}>
+                            <header className="mb-2">
+                                <h1 className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">Create your profile</h1>
+                                <p className="text-slate-500 text-xs sm:text-sm mt-1">Tell us a bit about who you are to get started.</p>
+                            </header>
 
-                        <div className="space-y-4 flex-grow">
                             {isGoogleUser && (
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-600 ml-1">Username</label>
@@ -136,7 +137,7 @@ const CompleteSignup = () => {
                                 </div>
                             )}
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-600 ml-1">First Name</label>
                                     <input
@@ -161,7 +162,7 @@ const CompleteSignup = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-slate-50/40 p-4 rounded-xl border border-slate-100 space-y-4">
+                            <div className="bg-slate-50/40 p-3 sm:p-4 rounded-xl border border-slate-100 space-y-3 sm:space-y-4">
                                 <DateSelector profileData={profileData} setProfileData={setProfileData} />
                                 <LocationSelector profileData={profileData} setProfileData={setProfileData} />
                             </div>
@@ -172,7 +173,7 @@ const CompleteSignup = () => {
                                     <span className="text-[10px] text-slate-400 font-medium">{(profileData.bio || "").length}/150</span>
                                 </div>
                                 <textarea
-                                    className={`${inputClass} h-24 py-3 resize-none`}
+                                    className={`${inputClass} h-20 py-3 resize-none`}
                                     placeholder="Share a short bio with the community..."
                                     maxLength={150}
                                     value={profileData.bio}
@@ -180,16 +181,16 @@ const CompleteSignup = () => {
                                 />
                             </div>
 
-                            <div className="pt-2">
+                            <div className="pt-1">
                                 <WebsiteLinks profileData={profileData} setProfileData={setProfileData} />
                             </div>
                         </div>
 
-                        <footer className="pt-6 mt-6 border-t border-slate-100 bg-white shrink-0">
+                        {/* Dedicated Step 1 Footer Layout */}
+                        <footer className="pt-3 sm:pt-4 mt-2 border-t border-slate-100 bg-white shrink-0">
                             <button
-                                type="button"
+                                type="submit" 
                                 className="w-full h-12 bg-gradient-to-r from-indigo-600 to-violet-600 cursor-pointer text-white font-semibold rounded-xl shadow-md shadow-indigo-200 hover:shadow-lg hover:shadow-indigo-200 transition-all duration-200 active:scale-[0.99] flex items-center justify-center text-sm"
-                                onClick={() => setPg(2)}
                             >
                                 Continue
                             </button>
@@ -197,34 +198,36 @@ const CompleteSignup = () => {
                     </div>
 
                     {/* STEP 2: Profile Image */}
-                    <div style={{ scrollbarWidth: "none" }} className="w-1/3 flex-shrink-0 flex flex-col p-6 sm:p-10 h-full overflow-y-auto">
-                        <header className="mb-6">
-                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Upload photo</h1>
-                            <p className="text-slate-500 text-sm mt-1.5">Express yourself! Add a profile picture so friends recognize you.</p>
-                        </header>
+                    <div style={{ scrollbarWidth: "none" }} className="w-1/3 flex-shrink-0 flex flex-col justify-between p-4 sm:p-10 h-full">
+                        <div className="flex-1 overflow-y-auto pb-4" style={{ scrollbarWidth: "none" }}>
+                            <header className="mb-4 sm:mb-6">
+                                <h1 className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">Upload photo</h1>
+                                <p className="text-slate-500 text-xs sm:text-sm mt-1.5">Express yourself! Add a profile picture so friends recognize you.</p>
+                            </header>
 
-                        <div className="flex flex-col justify-center items-center flex-grow py-6">
-                            <div className="p-1 rounded-full border-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-all duration-300 group">
-                                <div className="bg-white p-2 rounded-full shadow-sm">
-                                    <ProfileImageUpload profileData={profileData} setProfileData={setProfileData} />
+                            <div className="flex flex-col justify-center items-center py-4 sm:py-6">
+                                <div className="p-1 rounded-full border-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-all duration-300 group">
+                                    <div className="bg-white p-2 rounded-full shadow-sm">
+                                        <ProfileImageUpload profileData={profileData} setProfileData={setProfileData} />
+                                    </div>
                                 </div>
+                                <p className="mt-3 sm:mt-4 text-slate-400 text-xs font-medium bg-slate-100/70 px-3 py-1 rounded-full">
+                                    Recommended: Square JPEG or PNG
+                                </p>
                             </div>
-                            <p className="mt-4 text-slate-400 text-xs font-medium bg-slate-100/70 px-3 py-1 rounded-full">
-                                Recommended: Square JPEG or PNG
-                            </p>
                         </div>
 
-                        <footer className="grid grid-cols-2 gap-3 pt-6 mt-6 border-t border-slate-100 shrink-0">
+                        <footer className="grid grid-cols-2 gap-2 sm:gap-3 pt-3 sm:pt-4 mt-2 border-t border-slate-100 shrink-0">
                             <button
                                 type="button"
-                                className="h-12 border border-slate-200 cursor-pointer text-slate-600 font-semibold rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm"
+                                className="h-11 sm:h-12 border border-slate-200 cursor-pointer text-slate-600 font-semibold rounded-xl hover:bg-slate-50 transition-all duration-200 text-xs sm:text-sm active:scale-[0.99]"
                                 onClick={() => setPg(1)}
                             >
                                 Back
                             </button>
                             <button
                                 type="button"
-                                className="h-12 bg-gradient-to-r from-indigo-600 to-violet-600 cursor-pointer text-white font-semibold rounded-xl shadow-md shadow-indigo-100 hover:shadow-lg transition-all duration-200 text-sm"
+                                className="h-11 sm:h-12 bg-gradient-to-r from-indigo-600 to-violet-600 cursor-pointer text-white font-semibold rounded-xl shadow-md shadow-indigo-100 hover:shadow-lg transition-all duration-200 text-xs sm:text-sm active:scale-[0.99]"
                                 onClick={() => setPg(3)}
                             >
                                 Next Step
@@ -233,26 +236,28 @@ const CompleteSignup = () => {
                     </div>
 
                     {/* STEP 3: Interests */}
-                    <div style={{ scrollbarWidth: "none" }} className="w-1/3 flex-shrink-0 flex flex-col p-6 sm:p-10 h-full overflow-y-auto">
-                        <header className="mb-6">
-                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Your interests</h1>
-                            <p className="text-slate-500 text-sm mt-1.5">Pick your favorite topics to curate your personalized feed experience.</p>
-                        </header>
+                    <div style={{ scrollbarWidth: "none" }} className="w-1/3 flex-shrink-0 flex flex-col justify-between p-4 sm:p-10 h-full">
+                        <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4 pb-4" style={{ scrollbarWidth: "none" }}>
+                            <header className="mb-4 sm:mb-6">
+                                <h1 className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">Your interests</h1>
+                                <p className="text-slate-500 text-xs sm:text-sm mt-1.5">Pick your favorite topics to curate your personalized feed experience.</p>
+                            </header>
 
-                        <div className="flex-grow">
-                            <SelectInterests profileData={profileData} setProfileData={setProfileData} />
+                            <div className="flex-grow">
+                                <SelectInterests profileData={profileData} setProfileData={setProfileData} />
+                            </div>
+
+                            {error && (
+                                <div className="mt-4 bg-rose-50 border border-rose-100 rounded-xl p-3.5 animate-pulse">
+                                    <p className="text-rose-600 text-xs font-semibold text-center">{error}</p>
+                                </div>
+                            )}
                         </div>
 
-                        {error && (
-                            <div className="mt-4 bg-rose-50 border border-rose-100 rounded-xl p-3.5 animate-pulse">
-                                <p className="text-rose-600 text-xs font-semibold text-center">{error}</p>
-                            </div>
-                        )}
-
-                        <footer className="grid grid-cols-2 gap-3 pt-6 mt-6 border-t border-slate-100 shrink-0">
+                        <footer className="grid grid-cols-2 gap-2 sm:gap-3 pt-3 sm:pt-4 mt-2 border-t border-slate-100 shrink-0">
                             <button
                                 type="button"
-                                className="h-12 cursor-pointer border border-slate-200 text-slate-600 font-semibold rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm"
+                                className="h-11 sm:h-12 cursor-pointer border border-slate-200 text-slate-600 font-semibold rounded-xl hover:bg-slate-50 transition-all duration-200 text-xs sm:text-sm active:scale-[0.99]"
                                 onClick={() => setPg(2)}
                             >
                                 Back
@@ -260,11 +265,11 @@ const CompleteSignup = () => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`h-12 cursor-pointer ${
+                                className={`h-11 sm:h-12 cursor-pointer ${
                                     loading 
                                         ? "bg-slate-200 text-slate-400 cursor-not-allowed" 
                                         : "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-200 hover:shadow-lg transition-all duration-200 active:scale-[0.99]"
-                                } flex items-center justify-center gap-2 font-semibold rounded-xl text-sm`}
+                                } flex items-center justify-center gap-2 font-semibold rounded-xl text-xs sm:text-sm`}
                             >
                                 {loading ? <Loader size={20} color={"white"} /> : "Finish Setup"}
                             </button>
