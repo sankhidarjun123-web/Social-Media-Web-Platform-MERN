@@ -241,7 +241,7 @@ function ChannelProfile({
       {editProfile && (
         <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center" onClick={() => setEditProfile(false)}>
           <div onClick={(e) => e.stopPropagation()}>
-            <EditProfileImg profileImg={profileImg} setEditProfile={setEditProfile} />
+            <EditProfileImg profileImg={introData?.profileImg} setEditProfile={setEditProfile} />
           </div>
         </div>
       )}
