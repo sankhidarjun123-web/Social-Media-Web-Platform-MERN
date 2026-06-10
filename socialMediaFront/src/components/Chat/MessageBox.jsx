@@ -113,9 +113,11 @@ const MessageBox = ({ message, handleDelete }) => {
                     <div className="relative group max-w-full">
 
                         {/* Trash Button */}
-                        {((message?.isSend && isMobile) || hover) && (
+                        {(message?.isSend && (isMobile || hover)) && (
                             <button
                                 onClick={() => handleDelete(message)}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
                                 className={`
                                     absolute
                                     top-1/2
