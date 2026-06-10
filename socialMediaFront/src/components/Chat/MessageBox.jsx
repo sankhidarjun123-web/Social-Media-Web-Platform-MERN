@@ -113,12 +113,12 @@ const MessageBox = ({ message, handleDelete }) => {
                     <div className="relative group max-w-full">
 
                         {/* Trash Button */}
-                        {(message?.isSend && (isMobile || hover)) && (
-                            <button
-                                onClick={() => handleDelete(message)}
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
-                                className={`
+                        <div onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)}>
+                            {(message?.isSend && (isMobile || hover)) && (
+                                <button
+                                    onClick={() => handleDelete(message)}
+                                    className={`
                                     absolute
                                     top-1/2
                                     -translate-y-1/2
@@ -132,15 +132,13 @@ const MessageBox = ({ message, handleDelete }) => {
                                     hover-btn-prop
                                     -left-12
                                 `}
-                            >
-                                <Trash2 size={18} />
-                            </button>
-                        )}
+                                >
+                                    <Trash2 size={18} />
+                                </button>
+                            )}
 
-                        <div
-                            onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}
-                            className={`
+                            <div
+                                className={`
                                 px-4
                                 py-2.5
                                 rounded-2xl
@@ -157,30 +155,31 @@ const MessageBox = ({ message, handleDelete }) => {
                                 whitespace-pre-wrap
                                 min-w-0
                                 ${message?.isSend
-                                    ? `
+                                        ? `
                                         comp-gradient
                                         text-white
                                         rounded-br-md
                                       `
-                                    : `
+                                        : `
                                         bg-white
                                         text-black
                                         border
                                         border-zinc-200
                                         rounded-bl-md
                                       `
-                                }
+                                    }
                             `}
-                        >
+                            >
 
-                            {message?.type !== "text" && (
-                                <MessageMedia media={message?.media} />
-                            )}
+                                {message?.type !== "text" && (
+                                    <MessageMedia media={message?.media} />
+                                )}
 
-                            <p className="w-full">
-                                {message?.encryptedMessage}
-                            </p>
+                                <p className="w-full">
+                                    {message?.encryptedMessage}
+                                </p>
 
+                            </div>
                         </div>
 
                     </div>
