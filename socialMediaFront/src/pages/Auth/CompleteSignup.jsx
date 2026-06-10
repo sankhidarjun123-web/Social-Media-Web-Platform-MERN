@@ -70,7 +70,7 @@ const CompleteSignup = () => {
     };
 
     // REDESIGNED: Sleek, uniform input classes with improved hover, focus and placeholder states
-    const inputClass = "w-full h-12 bg-slate-50/60 border border-slate-200 rounded-xl px-4 text-slate-800 font-medium placeholder:text-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200 outline-none shadow-inner shadow-sm";
+    const inputClass = "relative z-[999] w-full h-12 bg-slate-50/60 border border-slate-200 rounded-xl px-4 text-slate-800 font-medium placeholder:text-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200 outline-none shadow-inner shadow-sm";
 
     return (
         <div className="w-full min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
