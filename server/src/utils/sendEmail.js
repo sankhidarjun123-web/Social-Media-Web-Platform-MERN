@@ -5,13 +5,16 @@ const path = require("path");
 const dns = require("dns");
 
 const transporter = nodemailer.createTransport({
-    port: 465,
+    port: 587,
     host: "smtp.gmail.com",
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_APP_PASSWORD
     },
-    secure: true
+    secure: false,
+    requireTLS: true,
+    logger: true,
+    debug: true
 });
 
 const sendVerificationEmail = async (
