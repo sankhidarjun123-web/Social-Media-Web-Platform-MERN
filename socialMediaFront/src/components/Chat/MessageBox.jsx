@@ -110,11 +110,11 @@ const MessageBox = ({ message, handleDelete }) => {
                 >
 
                     {/* Message Bubble */}
-                    <div className="relative group max-w-full">
+                    <div onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)} className="relative group max-w-full">
 
                         {/* Trash Button */}
-                        <div onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}>
+                        <div>
                             {(message?.isSend && (isMobile || hover)) && (
                                 <button
                                     onClick={() => handleDelete(message)}
