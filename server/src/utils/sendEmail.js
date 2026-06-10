@@ -6,15 +6,27 @@ const dns = require("dns");
 dns.setDefaultResultOrder("ipv4first");
 
 const transporter = nodemailer.createTransport({
-    host: "142.250.4.108",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
         user: process.env.EMAIL,
         pass: process.env.APP_PASSWORD
     },
-    tls: {
-        servername: "smtp.gmail.com"
+    getSocket: (options, callback) => {
+        dns.resolve4("smtp.gmail.com", (err, addresses) => {
+            if (err) return callback(err);
+
+            const net = require("net");
+            const socket = net.connect({
+                host: addresses[0],
+                port: 587
+            });
+
+            callback(null, {
+                connection: socket
+            });
+        });
     }
 });
 
