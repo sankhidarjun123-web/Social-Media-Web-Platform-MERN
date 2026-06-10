@@ -5,11 +5,14 @@ const path = require("path");
 const dns = require("dns");
 
 const transporter = nodemailer.createTransport({
-    port: 587,
+    port: 465,
     host: "smtp.gmail.com",
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_APP_PASSWORD
+    },
+    tls: {
+        rejectUnauthorized: false // Helps prevent TLS connection rejections
     },
     connectionTimeout: 60000,
     greetingTimeout: 30000,
