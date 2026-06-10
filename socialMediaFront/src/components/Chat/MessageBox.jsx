@@ -98,6 +98,8 @@ const MessageBox = ({ message, handleDelete }) => {
 
                 {/* Message Section */}
                 <div
+                    onMouseEnter={() => setHover(true)}
+                    onMouseLeave={() => setHover(false)}
                     className={`
                         flex
                         flex-col
@@ -110,8 +112,7 @@ const MessageBox = ({ message, handleDelete }) => {
                 >
 
                     {/* Message Bubble */}
-                    <div onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)} className="relative group max-w-full">
+                    <div className="relative group max-w-full">
 
                         {/* Trash Button */}
                         <div>
