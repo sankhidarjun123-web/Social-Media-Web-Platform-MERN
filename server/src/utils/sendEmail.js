@@ -5,6 +5,15 @@ const path = require("path");
 const dns = require("dns");
 dns.setDefaultResultOrder("ipv4first");
 
+dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    console.log("SMTP addresses:");
+    console.log(addresses);
+});
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
