@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 const path = require("path");
 
+const dns = require("dns");
 
 const transporter = nodemailer.createTransport({
     port: 465,
@@ -18,6 +19,9 @@ const sendVerificationEmail = async (
     verificationLink
 ) => {
 
+    dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
+        console.log(addresses);
+    });
     const html = await ejs.renderFile(
         path.join(process.cwd(), "views", "verification.ejs"),
         {
@@ -35,7 +39,7 @@ const sendVerificationEmail = async (
 
     await new Promise((resolve, reject) => {
         transporter.sendMail(mailData, (err, info) => {
-            if(err) {
+            if (err) {
                 console.error(err);
                 reject(err);
             } else {
