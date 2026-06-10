@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
     secure: false,
     auth: {
         user: process.env.EMAIL,
-        pass: process.env.APP_PASSWORD
+        pass: process.env.EMAIL_APP_PASSWORD
     },
     getSocket: (options, callback) => {
         dns.resolve4("smtp.gmail.com", (err, addresses) => {
@@ -35,6 +35,8 @@ const sendVerificationEmail = async (
     verificationLink
 ) => {
 
+    console.log("EMAIL:", process.env.EMAIL);
+    console.log("APP_PASSWORD exists:", !!process.env.APP_PASSWORD);
     dns.lookup("smtp.gmail.com", { all: true }, (err, addresses) => {
         if (err) {
             console.error(err);
