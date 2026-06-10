@@ -5,6 +5,7 @@ import { like, comment, share, liked, views } from '../../assets/allImgs';
 const PostFooter = ({ post, openComments, setOpenComments }) => {
 
   const SERVER = import.meta.env.VITE_SERVER_URL;
+  const CLIENT_URL = import.meta.env.VITE_CLIENT_URL;
 
   const [likes, setLikes] = useState(post?.likes || 0);
   const comments = post?.comments || 0;
@@ -13,18 +14,18 @@ const PostFooter = ({ post, openComments, setOpenComments }) => {
 
   const [sharing, setSharing] = useState(false);
 
-  const handleShare = async (postId) => {
+  const handleShare = async () => {
     console.log("Share clicked");
 
     try {
-      const shareUrl = `${SERVER}/post/${postId}`;
+      const shareUrl = `${SERVER}/userMedia/posts/${post?._id}/shares`;
 
       console.log("Sharing:", shareUrl);
       console.log(navigator.userAgent);
 
       await navigator.share({
         title: "Check out this post",
-        text: "Found this interesting",
+        text: `${post.text.words.slice(0, 100)}...`,
         url: shareUrl,
       });
 
@@ -141,7 +142,7 @@ const PostFooter = ({ post, openComments, setOpenComments }) => {
         {/* Share */}
         <div className="flex items-center bg-zinc-100 border border-zinc-200 rounded-full px-2 py-1 shadow-sm">
           <button
-            onClick={() => handleShare(post._id)}
+            onClick={() => handleShare()}
             disabled={sharing}
             className="cursor-pointer hover:scale-105 transition-all duration-200 w-5 h-5 sm:w-6 sm:h-6"
           >
@@ -150,6 +151,10 @@ const PostFooter = ({ post, openComments, setOpenComments }) => {
               alt="share"
               className="w-full h-full"
             />
+
+            <span className="text-[11px] sm:text-xs font-medium text-zinc-700 ml-1">
+              {post?.shares || 0}
+            </span>
           </button>
         </div>
 

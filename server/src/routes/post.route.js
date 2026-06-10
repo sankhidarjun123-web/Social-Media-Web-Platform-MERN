@@ -51,6 +51,6 @@ router.post("/posts/:postId/comments/:commentId/like", likeComment);
 
 router.delete("/posts/:postId/comments/:commentId/like", unlikeComment);
 
-router.post("/posts/:postId/shares", sharePost);
+router.get("/posts/:postId/shares", sharePost);
 
 module.exports = router;

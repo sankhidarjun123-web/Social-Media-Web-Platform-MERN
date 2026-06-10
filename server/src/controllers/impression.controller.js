@@ -291,30 +291,70 @@ const viewPost = async (req, res) => {
 
 
 const sharePost = async (req, res) => {
-
     try {
+        const { postId } = req.params;
 
-        const user = req.user.id;
+        if (!postId) {
+            return res.status(400).send("Post id is required");
+        }
 
-        if(!user) return res.status(401).json({ message: "Unauthorized" });
-        const postId = req?.params?.postId;
+        const post = await Post.findByIdAndUpdate(
+            postId,
+            { $inc: { shares: 1 } },
+            { new: true }
+        )
+            .populate("postedBy", "username profileImg");
 
-        if(!postId) return res.status(400).json({ message: "Post id is not provided" });
+        if (!post) {
+            return res.status(404).send("Post not found");
+        }
 
-        await Post.updateOne({
-            _id: postId
-        }, {
-            $inc: { shares: 1 }
-        }, {
-            runValidators: true
-        });
+        const title =
+            `${post.postedBy?.username || "User"}'s Post`;
 
-        return res.status(200).json({ message: "Share status updated successfully" });
+        const description =
+            post?.text?.words?.slice(0, 150) ||
+            "Check out this post";
+
+        const firstMedia = post.media?.[0];
+
+        const image =
+            firstMedia?.type === "image"
+                ? firstMedia.url
+                : post.postedBy?.profileImg ||
+                `${process.env.CLIENT_URL}/default-post.png`;
+
+        return res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>${title}</title>
+
+            <meta property="og:title" content="${title}" />
+            <meta property="og:description" content="${description}" />
+            <meta property="og:image" content="${image}" />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content="${process.env.CLIENT_URL}/post/${post._id}" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="${title}" />
+            <meta name="twitter:description" content="${description}" />
+            <meta name="twitter:image" content="${image}" />
+
+            <meta http-equiv="refresh"
+                  content="0;url=${process.env.CLIENT_URL}/post/${post._id}" />
+        </head>
+        <body>
+            Redirecting...
+        </body>
+        </html>
+        `);
+
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Internal server error" });
+        return res.status(500).send("Internal server error");
     }
-}
+};
 
 
 module.exports = {

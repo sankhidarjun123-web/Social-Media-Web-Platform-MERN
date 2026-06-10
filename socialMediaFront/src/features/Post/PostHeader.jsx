@@ -29,7 +29,7 @@ const PostHeader = ({ post, onPage, number, setRemove, setDeleted }) => {
 
   // Stores current editable post data
   const [editData, setEditData] = useState({});
-
+  const CLIENT_URL = import.meta.env.VITE_CLIENT_URL;
   const SERVER = import.meta.env.VITE_SERVER_URL;
 
   // Dropdown options array
@@ -95,18 +95,18 @@ const PostHeader = ({ post, onPage, number, setRemove, setDeleted }) => {
     );
   }
 
-  const handleShare = async (postId) => {
+  const handleShare = async () => {
     console.log("Share clicked");
 
     try {
-      const shareUrl = `${SERVER}/post/${postId}`;
+      const shareUrl = `${SERVER}/userMedia/posts/${post?._id}/shares`;
 
       console.log("Sharing:", shareUrl);
       console.log(navigator.userAgent);
 
       await navigator.share({
         title: "Check out this post",
-        text: "Found this interesting",
+        text: `${post.text.words.slice(0, 100)}...`,
         url: shareUrl,
       });
 
