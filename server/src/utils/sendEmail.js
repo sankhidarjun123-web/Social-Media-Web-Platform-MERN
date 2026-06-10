@@ -11,6 +11,9 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL,
         pass: process.env.EMAIL_APP_PASSWORD
     },
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
     secure: false,
     requireTLS: true,
     logger: true,
