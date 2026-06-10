@@ -58,6 +58,8 @@ const MessageBox = ({ message, handleDelete }) => {
     return (
 
         <div
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
             className={`
                 w-full
                 flex
@@ -98,8 +100,6 @@ const MessageBox = ({ message, handleDelete }) => {
 
                 {/* Message Section */}
                 <div
-                    onMouseEnter={() => setHover(true)}
-                    onMouseLeave={() => setHover(false)}
                     className={`
                         flex
                         flex-col
