@@ -113,7 +113,7 @@ const MessageBox = ({ message, handleDelete }) => {
                     <div className="relative group max-w-full">
 
                         {/* Trash Button */}
-                        {(message?.isSend || isMobile) && (
+                        {(message?.isSend && isMobile) && (
                             <button
                                 onClick={() => handleDelete(message)}
                                 className={`
