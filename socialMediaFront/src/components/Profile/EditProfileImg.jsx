@@ -11,7 +11,7 @@ const EditProfileImg = ({ profileImg, setEditProfile }) => {
         </span>
         <button
           onClick={() => setEditProfile(false)}
-          className="group relative w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+          className="group cursor-pointer relative w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
         >
           <img
             className="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300"
@@ -57,20 +57,6 @@ const EditProfileImg = ({ profileImg, setEditProfile }) => {
           <p className="text-gray-500 text-sm font-medium">
             {profileImg ? "Current profile image" : "No image selected"}
           </p>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-4 w-full justify-center">
-          <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
-            <img src={channelCamera} alt="camera" className="w-5 h-5" />
-            Upload Photo
-          </button>
-          <button
-            onClick={() => setEditProfile(false)}
-            className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-gray-500 hover:bg-gray-50 transition-all duration-300"
-          >
-            Cancel
-          </button>
         </div>
       </div>
 
