@@ -271,7 +271,7 @@ const ChatMain = ({ mobileDevice, setSubmitedData, submitedData }) => {
             fixed
             top-28
             left-4
-            z-50
+            z-30
             w-10
             h-10
             rounded-full

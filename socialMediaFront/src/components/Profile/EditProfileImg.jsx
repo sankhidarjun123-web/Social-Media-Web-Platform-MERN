@@ -1,36 +1,83 @@
 import React, { useState } from "react";
-
 import { wrong, channelCamera, user } from "../../assets/allImgs";
 
-
-
 const EditProfileImg = ({ profileImg, setEditProfile }) => {
+  return (
+    <div className="w-[600px] bg-white flex flex-col items-center justify-between rounded-3xl shadow-2xl overflow-hidden">
+      {/* Header */}
+      <div className="w-full h-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 flex items-center justify-between px-8">
+        <span className="text-white font-bold text-3xl tracking-wide">
+          Profile Image
+        </span>
+        <button
+          onClick={() => setEditProfile(false)}
+          className="group relative w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+        >
+          <img
+            className="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300"
+            alt="close"
+            src={wrong}
+          />
+        </button>
+      </div>
 
+      {/* Content Area */}
+      <div className="flex flex-col items-center justify-center gap-8 py-12 px-8 w-full">
+        {/* Profile Image Container */}
+        <div className="relative">
+          {/* Animated Background Circle */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-xl opacity-30 animate-pulse"></div>
 
+          {/* Main Profile Circle */}
+          <div className="relative w-36 h-36 rounded-full border-8 border-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center shadow-2xl">
+            <img
+              src={profileImg}
+              className={`w-full h-full object-cover transition-opacity duration-300 ${
+                profileImg ? "opacity-100" : "opacity-50"
+              }`}
+              alt="profile"
+            />
 
-    return <div className="w-[600px] h-[400px] bg-slate-900/95 flex flex-col items-center justify-between rounded-3xl">
-
-        <div className="w-full h-20 border-b-1 border-b-solid border-b-white text-white font-bold text-3xl flex items-center justify-evenly">
-            <span>Appereance</span>
-            <button onClick={() => setEditProfile(false)}><img className="w-16 h-16 rounded-full cursor-pointer focus:bg-black/45 hover:bg-black/45 p-2" alt="remove" src={wrong} /></button>
-        </div>
-
-        <div className="flex flex-col items-center text-white font-bold gap-4">
-            <div
-                className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-white bg-gray-400 overflow-hidden flex items-center justify-center"
-            >
-
+            {/* Overlay Icon if no image */}
+            {!profileImg && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
                 <img
-                    src={profileImg}
-                    className={`w-full h-full object-cover ${profileImg ? "" : "opacity-70"
-                        }`}
-                    alt="profile"
+                  src={user}
+                  className="w-20 h-20 opacity-40"
+                  alt="user-default"
                 />
-            </div>
-            <p>Profile</p>
+              </div>
+            )}
+          </div>
         </div>
-    </div>
-}
 
+        {/* Label */}
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-gray-800 font-bold text-2xl">Profile Picture</p>
+          <p className="text-gray-500 text-sm font-medium">
+            {profileImg ? "Current profile image" : "No image selected"}
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-4 w-full justify-center">
+          <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
+            <img src={channelCamera} alt="camera" className="w-5 h-5" />
+            Upload Photo
+          </button>
+          <button
+            onClick={() => setEditProfile(false)}
+            className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-gray-500 hover:bg-gray-50 transition-all duration-300"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Accent */}
+      <div className="w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+    </div>
+  );
+};
 
 export default EditProfileImg;
