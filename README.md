@@ -116,18 +116,18 @@ A full-stack social media platform where users can connect, share posts, interac
 - Frontend: https://social-media-web-platform-mern-x3jy.vercel.app
 - Backend: Render
 
-Clone the Repository:
+1) Clone the Repository:
 ```
 git clone https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN.git
 cd Social-Media-Web-Platform-MERN
 ```
-Backend Setup:
+2) Backend Setup:
 ```
 cd server
 npm install
 npm run build
 ```
-Create a .env file:
+3) Create a .env file:
 ```
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
@@ -140,19 +140,49 @@ EMAIL_PASS=your_email_password
 etc
 ```
 
-Backend Start:
+4) Backend Start:
 ```
 npm start
 ```
-Frontend Setup
+5) Frontend Setup:
 ```
 cd socialMediaFront
 npm install
 ```
-Start the frontend:
+6) Start the frontend:
 ```
 npm run dev
 ```
+
+# ScreeenShots:
+
+## Landing Page
+![landing](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111716.png)
+
+## Sign-Up Page
+![signup](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111722.png)
+
+## Feed Page 
+![feed](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111743.png)
+
+## Search Page
+![search-1](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111758.png)
+![search-2](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111822.png)
+
+## Network Page
+![network](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111830.png)
+
+## Chat Page
+![chat-1](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111841.png)
+![chat-2](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111857.png)
+
+## Setting Interface
+![setting](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111912.png)
+
+## Channel Page
+![channel-1](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111931.png)
+![channel-2](https://github.com/sankhidarjun123-web/Social-Media-Web-Platform-MERN/blob/e2357c61b0fc12e6b79947e5173a10ffaf495010/screenshots/Screenshot%202026-06-11%20111946.png)
+
 ### Author Information:
 - Name: Arjun Sankhi
 - GitHub: [https://github.com/your-username](https://github.com/sankhidarjun123-web)
