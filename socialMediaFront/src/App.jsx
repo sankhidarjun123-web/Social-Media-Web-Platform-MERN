@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react'
 import Auth from './layouts/Auth'
 import Feed from './layouts/Feed';
 import { Navigate, Routes, Route } from 'react-router-dom';
-
+import { ToastContainer } from "react-toastify";
 import { AuthContext } from './contexts/AuthContext';
 import { ChannelProvider } from './contexts/ChannelContext.jsx'
 
@@ -57,6 +57,7 @@ function App() {
   }, []);
   return (
     <>
+      <ToastContainer position='top-right' />
       <Routes>
 
         {/* Public Route */}

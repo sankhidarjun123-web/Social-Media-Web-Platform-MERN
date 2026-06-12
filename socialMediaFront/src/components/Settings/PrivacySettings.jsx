@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const PrivacySettings = () => {
 
@@ -42,8 +43,11 @@ const PrivacySettings = () => {
                 ...prev,
                 ...privacySettings
             }));
+
+            toast.success("Privacy settings changed successfully");
         } catch (err) {
             console.error(err);
+            toast.error("Something went wrong updating the privacy settings");
         }
     };
 

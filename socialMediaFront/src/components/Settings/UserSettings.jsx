@@ -5,6 +5,7 @@ import { useProfile } from "../../contexts/ProfileContext";
 import DeleteAccount from "./DeleteAccount";
 import LocationSetter from "../Profile/LocationSetter";
 import PhoneInput from "react-phone-input-2";
+import { toast } from "react-toastify";
 import "react-phone-input-2/lib/style.css";
 
 
@@ -51,6 +52,7 @@ const UserSettings = () => {
                     hasPassword: true
                 }
             });
+            toast.success("Password changed successfully");
         } catch (err) {
             console.error(err);
             setError("Failed to update password");
@@ -69,6 +71,7 @@ const UserSettings = () => {
                     username: username
                 }
             });
+            toast.success("Username changed successfully");
         } catch (err) {
             console.error(err);
             setError("Failed to update the username an error occured");
@@ -88,6 +91,8 @@ const UserSettings = () => {
                     phone: phone
                 }
             });
+
+            toast.success("Phone number changed successfully");
         } catch (err) {
             console.error(err);
             setError("Failed to update the phone an error occured");
@@ -115,7 +120,10 @@ const UserSettings = () => {
 
     const handleEdit = async () => {
 
-        await editProfile(editedProfile).then(() => console.log("Success")).catch((err) => console.error(err));
+        await editProfile(editedProfile).then(() => toast.success("Edited user profile successfully")).catch((err) => {
+            console.error(err);
+            setError("Error updating the profile");
+    });
     }
 
     const handlePhoneChange = (value) => {
